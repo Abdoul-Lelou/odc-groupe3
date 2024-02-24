@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Park index
+{% endblock %}
+
+{% block body %}
+	<div class="col-12">
+		<a href="{{ path('app_park_new') }}" class="btn btn-success">Ajouter park</a>
+		<div class="card">
+			<div class="card-header">
+				<h3 class="card-title">Liste des parks</h3>
+
+				<div class="card-tools">
+					<div class="input-group input-group-sm" style="width: 150px;">
+						<input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+						<div class="input-group-append">
+							<button type="submit" class="btn btn-default">
+								<i class="fas fa-search"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.card-header -->
+			<div class="card-body table-responsive p-0">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>ID</th>
+							<th>Park</th>
+							<th>Adresse</th>
+							<th>telephone</th>
+							<th>Heure Ouvr</th>
+							<th>Heure Ferm</th>
+							<th>Categorie Park</th>
+							<th>Manager</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for item in parks %}
+							<tr>
+								<td>{{ loop.index }}</td>
+								<td>{{ item.id }}</td>
+								<td>{{ item.name }}</td>
+								<td>{{ item.adresse }}</td>
+								<td>{{ item.phone }}</td>
+								<td>{{ item.open|date('d-m-Y') }}</td>
+								<td>{{ item.close|date('d-m-Y h:m:s') }}</td>
+								<td>{{ item.categorie }}</td>
+								<td>
+									{% if item.user != null %}
+										<a href="#">{{ item.user.firstName }}</a>
+
+									{% else %}
+										<a href="{{ path('app_add_gestionaire', {'id': item.id}) }}" class="btn btn-primary">Ajout manager</a>
+									{% endif %}
+								</td>
+
+								<td>
+									{# ajout-place #}
+									<a href="{{ path('app_park_edit', {'id': item.id}) }}" class="btn btn-primary">Edit</a>
+									<a href="{{ path('app_park_show', {'id': item.id}) }}" class="btn btn-primary">Ajouter une place</a>
+									<a href="{{ path('app_park_delete', {'id': item.id}) }}" class="btn btn-danger">Supprimer</a>
+
+								</td>
+							</tr>
+
+						{% endfor %}
+
+					</tbody>
+				</table>
+			</div>
+			<!-- /.card-body -->
+		</div>
+		<!-- /.card -->
+	</div>
+{% endblock %}
