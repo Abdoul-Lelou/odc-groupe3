@@ -93,5 +93,38 @@ class UserController extends AbstractController
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    
+
+    /**
+     * @Route("/client", name="app_user_delete", methods={"GET"})
+     */
+    public function client(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
+    {
+        $user = new User();
+        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // encode the plain password
+            $user->setPassword(
+                $userPasswordHasher->hashPassword(
+                    $user,
+                    $form->get('plainPassword')->getData()
+                )
+            );
+            $roles = $form->getData()->getProfile();
+            $user->setRoles([$roles]);
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+            // do anything else you need here, like send an email
+
+            return $this->redirectToRoute('app_user_index');
+        }
+        return $this->render('user/index.html.twig', [
+            'users' => $userRepository->findByProfile(["ROLE_GEST"]),
+            'form' => $form->createView()
+        ]);
+    }
+
+
 }
