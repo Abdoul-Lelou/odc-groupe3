@@ -30,6 +30,7 @@ class StructureController extends AbstractController
             $structureValide = $strucutreExist;
         }else {
             $structure = new Structure;
+            $structure ->setUpdatedAt();
             $form = $this->createForm(StructureType::class, $structure);
             $structureValide = $structure;
         }

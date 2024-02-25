@@ -160,4 +160,14 @@ class Structure
         return $this->imageFile;
     }
 
+    public function getUpdatedAt(): ?int
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt()
+    {
+        return $this->updatedAt = new \DateTimeImmutable();
+    }
+
 }

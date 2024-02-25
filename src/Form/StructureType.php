@@ -18,7 +18,8 @@ class StructureType extends AbstractType
             ->add('phone')
             ->add('email')
             ->add('website')
-            ->add('imageFile', VichFileType::class)
+            // ->add('logo')
+            // ->add('imageFile')
         ;
     }
 

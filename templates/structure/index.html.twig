@@ -8,9 +8,9 @@
     
 	<div
 		class="col-md-8 offset-md-2">
-    {% if structure != null %}
+    {# {% if structure != null %}
        <img style="width:60px; height: 60px;" src="{{ vich_uploader_asset(structure) }}">
-    {% endif %}
+    {% endif %} #}
 		<!-- general form elements -->
 		<div class="card card-primary">
 			<div class="card-header">
@@ -52,7 +52,7 @@
 					<label for="exampleInputFile">Logo</label>
 					<div class="input-group">
 						<div class="custom-file">
-							{{ form_widget(form.imageFile, {'attr':{'class':'custom-file-input'}}) }}
+							{# {{ form_widget(form.imageFile, {'attr':{'class':'custom-file-input'}}) }} #}
 
 							<label class="custom-file-label" for="exampleInputFile">Choose file</label>
 						</div>

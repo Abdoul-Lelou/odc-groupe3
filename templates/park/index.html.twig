@@ -5,12 +5,12 @@
 
 {% block body %}
 	<div class="col-12">
-		<a href="{{ path('app_park_new') }}" class="btn btn-success">Ajouter park</a>
+		<a href="{{ path('app_park_new') }}" class="btn btn-success mb-2">Ajouter park</a>
 		<div class="card">
 			<div class="card-header">
 				<h3 class="card-title">Liste des parks</h3>
 
-				<div class="card-tools">
+				{# <div class="card-tools">
 					<div class="input-group input-group-sm" style="width: 150px;">
 						<input type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
@@ -20,7 +20,7 @@
 							</button>
 						</div>
 					</div>
-				</div>
+				</div> #}
 			</div>
 			<!-- /.card-header -->
 			<div class="card-body table-responsive p-0">
@@ -47,22 +47,22 @@
 								<td>{{ item.name }}</td>
 								<td>{{ item.adresse }}</td>
 								<td>{{ item.phone }}</td>
-								<td>{{ item.open|date('d-m-Y') }}</td>
-								<td>{{ item.close|date('d-m-Y h:m:s') }}</td>
+								<td>{{ item.open|date('d/m | h:m:s') }}</td>
+								<td>{{ item.close|date('d/m | h:m:s') }}</td>
 								<td>{{ item.categorie }}</td>
 								<td>
 									{% if item.user != null %}
 										<a href="#">{{ item.user.firstName }}</a>
 
 									{% else %}
-										<a href="{{ path('app_add_gestionaire', {'id': item.id}) }}" class="btn btn-primary">Ajout manager</a>
+										<a href="{{ path('app_add_gestionaire', {'id': item.id}) }}" class="btn btn-primary">Ajout</a>
 									{% endif %}
 								</td>
 
 								<td>
 									{# ajout-place #}
 									<a href="{{ path('app_park_edit', {'id': item.id}) }}" class="btn btn-primary">Edit</a>
-									<a href="{{ path('app_park_show', {'id': item.id}) }}" class="btn btn-primary">Ajouter une place</a>
+									<a href="{{ path('app_park_show', {'id': item.id}) }}" class="btn btn-primary">place</a>
 									<a href="{{ path('app_park_delete', {'id': item.id}) }}" class="btn btn-danger">Supprimer</a>
 
 								</td>
