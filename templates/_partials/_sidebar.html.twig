@@ -15,7 +15,7 @@
 				<img src="img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
 			</div>
 			<div class="info">
-				<a href="#" class="d-block">{{"USER"}}</a>
+				<a href="#" class="d-block">{{ app.user.lastname  }} {{ app.user.firstname  }}</a>
 			</div>
 		</div>
 
@@ -24,7 +24,7 @@
 			<ul
 				class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 				<!-- Add icons to the links using the .nav-icon class
-								               with font-awesome or any other icon font library -->
+																               with font-awesome or any other icon font library -->
 
 
 				<li class="nav-item has-treeview">
@@ -53,30 +53,33 @@
 
 					</ul>
 				</li>
-				<li class="nav-item has-treeview">
-					<a href="#" class="nav-link">
-						<i class="fas fa-user"></i>
-						<p>
-							Utlisateurs
-							<i class="right fas fa-angle-left"></i>
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="/user" class="nav-link">
-								<i class="fas fa-user-check"></i>
-								<p>Liste</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="/register" class="nav-link">
-								<i class="fas fa-user-plus"></i>
-								<p>Ajout</p>
-							</a>
-						</li>
+				{% if app.user.profile =="ROLE_SUP_ADM" or app.user.profile =="ROLE_GEST"  %}
+					<li class="nav-item has-treeview">
+						<a href="#" class="nav-link">
+							<i class="fas fa-user"></i>
+							<p>
+								Utlisateurs
+								<i class="right fas fa-angle-left"></i>
+							</p>
+						</a>
+						<ul class="nav nav-treeview">
+							<li class="nav-item">
+								<a href="/user" class="nav-link">
+									<i class="fas fa-user-check"></i>
+									<p>Liste</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="/register" class="nav-link">
+									<i class="fas fa-user-plus"></i>
+									<p>Ajout</p>
+								</a>
+							</li>
 
-					</ul>
-				</li>
+						</ul>
+					</li>
+				{% endif %}
+
 				<li class="nav-item has-treeview">
 					<a href="#" class="nav-link">
 						<i class="fas fa-users"></i>

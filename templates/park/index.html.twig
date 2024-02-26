@@ -50,20 +50,22 @@
 								<td>{{ item.open|date('d/m | h:m:s') }}</td>
 								<td>{{ item.close|date('d/m | h:m:s') }}</td>
 								<td>{{ item.categorie }}</td>
-								<td>
+								<td class="d-flex justify-content-center">
 									{% if item.user != null %}
 										<a href="#">{{ item.user.firstName }}</a>
 
 									{% else %}
-										<a href="{{ path('app_add_gestionaire', {'id': item.id}) }}" class="btn btn-primary">Ajout</a>
+										<a href="{{ path('app_add_gestionaire', {'id': item.id}) }}" class="fas fa-user-circle mt-1 text-success"></a>
 									{% endif %}
 								</td>
 
 								<td>
 									{# ajout-place #}
-									<a href="{{ path('app_park_edit', {'id': item.id}) }}" class="btn btn-primary">Edit</a>
-									<a href="{{ path('app_park_show', {'id': item.id}) }}" class="btn btn-primary">place</a>
-									<a href="{{ path('app_park_delete', {'id': item.id}) }}" class="btn btn-danger">Supprimer</a>
+									<a href="{{ path('app_park_edit', {'id': item.id}) }}" class="fas fa-edit text-secondary" title="add manager"></a>
+									|
+									<a href="{{ path('app_park_show', {'id': item.id}) }}" class="fas fa-location-arrow text-warning" title="place"></a>
+									|
+									<a href="{{ path('app_park_delete', {'id': item.id}) }}" class="fas fa-trash text-danger"  title="supprimer"></a>
 
 								</td>
 							</tr>

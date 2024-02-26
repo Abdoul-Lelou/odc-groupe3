@@ -19,19 +19,42 @@
             </tr>
         </thead>
         <tbody>
+        
         {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.firstname }}</td>
-                <td>{{ user.lastname }}</td>
-                <td>{{ user.phone }}</td>
-                <td>{{ user.profile }}</td>
-                <td>
-                    <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
-                </td>
-            </tr>
+          {% if user.profile !="ROLE_SUP_ADM"%}
+          {% if is_granted("ROLE_SUP_ADM") %}
+          <tr>
+              <td>{{ user.id }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.firstname }}</td>
+              <td>{{ user.lastname }}</td>
+              <td>{{ user.phone }}</td>
+              <td>{{ user.profile }}</td>
+              <td>
+                  <a href="{{ path('app_user_show', {'id': user.id}) }}" class="fas fa-eye "></a>
+                  |
+                  <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="fas fa-edit text-warning"></a>
+              </td>
+          </tr>
+          {% endif %}
+          {% endif %}
+          {% if user.profile !="ROLE_SUP_ADM" and user.profile !="ROLE_GEST" %}
+          {% if is_granted("ROLE_GEST") and is_granted("ROLE_SUP_ADM") == false %}
+          <tr>
+              <td>{{ user.id }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.firstname }}</td>
+              <td>{{ user.lastname }}</td>
+              <td>{{ user.phone }}</td>
+              <td>{{ user.profile }}</td>
+              <td>
+                  <a href="{{ path('app_user_show', {'id': user.id}) }}" class="fas fa-eye "></a>
+                  |
+                  <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="fas fa-edit text-warning"></a>
+              </td>
+          </tr>
+          {% endif %}
+          {% endif %}
         {% else %}
             <tr>
                 <td colspan="9">no records found</td>

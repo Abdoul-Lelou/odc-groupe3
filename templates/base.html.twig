@@ -7,6 +7,7 @@
 			{% block title %}SI PARKING
 			{% endblock %}
 		</title>
+		
 		<!-- Font Awesome Icons -->
 		<link
 		rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
@@ -24,11 +25,42 @@
 		rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 		<!-- Google Font: Source Sans Pro -->
 		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+
+
+		<!-- Ionicons -->
+		<link
+		rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+		<!-- Tempusdominus Bbootstrap 4 -->
+		<link
+		rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+		<!-- iCheck -->
+		<link
+		rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+		<!-- JQVMap -->
+		<link
+		rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+		<!-- Theme style -->
+		<link
+		rel="stylesheet" href="dist/css/adminlte.min.css">
+		<!-- overlayScrollbars -->
+		<link
+		rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+		<!-- Daterange picker -->
+		<link
+		rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+		<!-- summernote -->
+		<link
+		rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
+		<!-- Google Font: Source Sans Pro -->
+		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
 		{% endblock %}
 
-	
+
 	</head>
 	<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 
@@ -46,19 +78,18 @@
 				class="content-wrapper"> <!-- Content Header (Page header) -->
 				<div class="content-header">
 					<div class="container-fluid">
-						<div class="row mb-2">
-							{# <div class="col-sm-6">
-								<h1 class="m-0 text-dark">Dashboard v2</h1>
-							</div> #}
+						<div class="row mb-2">{# <div class="col-sm-6">
+																													<h1 class="m-0 text-dark">Dashboard v2</h1>
+																												</div> #}
 							<!-- /.col -->
 							{# <div class="col-sm-6">
-								<ol class="breadcrumb float-sm-right">
-									<li class="breadcrumb-item">
-										<a href="#">Home</a>
-									</li>
-									<li class="breadcrumb-item active">Dashboard v2</li>
-								</ol>
-							</div> #}
+																													<ol class="breadcrumb float-sm-right">
+																														<li class="breadcrumb-item">
+																															<a href="#">Home</a>
+																														</li>
+																														<li class="breadcrumb-item active">Dashboard v2</li>
+																													</ol>
+																												</div> #}
 							<!-- /.col -->
 						</div>
 						<!-- /.row -->
@@ -70,69 +101,96 @@
 				<!-- Main content -->
 				<section class="content">
 					<div class="container-fluid">
-						<div
-							class="row">
-							 {% block body %}
-								
-							 {% endblock %}
-							 
+						<div class="row"> {% block body %}{% endblock %}
+
+							</div>
+							<!-- /.row -->
 						</div>
-						<!-- /.row -->
-					</div>
-					<!-- /.container-fluid -->
-				</section>
-				<!-- /.content -->
-			</div>
-			<!-- /.content-wrapper -->
-
-			<!-- Control Sidebar -->
-			<aside
-				class="control-sidebar control-sidebar-dark"><!-- Control sidebar content goes here -->
-			</aside>
-			<!-- /.control-sidebar -->
-
-			<!-- Main Footer -->
-			<footer class="main-footer">
-				<strong>Copyright &copy; 2024
-					<a href="#">GROUPE3-ODC</a>.</strong>
-				
-				<div class="float-right d-none d-sm-inline-block">
-					<b>Version</b>
-					1.0.0
+						<!-- /.container-fluid -->
+					</section>
+					<!-- /.content -->
 				</div>
-			</footer>
+				<!-- /.content-wrapper -->
+
+				<!-- Control Sidebar -->
+				<aside
+					class="control-sidebar control-sidebar-dark"><!-- Control sidebar content goes here -->
+				</aside>
+				<!-- /.control-sidebar -->
+
+				<!-- Main Footer -->
+				<footer class="main-footer">
+					<strong>Copyright &copy; 2024
+						<a href="#">GROUPE3-ODC</a>.</strong>
+
+					<div class="float-right d-none d-sm-inline-block">
+						<b>Version</b>
+						1.0.0
+					</div>
+				</footer>
 
 
-		</div>
+			</div>
 
 
-		<!-- REQUIRED SCRIPTS -->
-		<!-- jQuery -->
+			<!-- REQUIRED SCRIPTS -->
+			<!-- jQuery -->
+			<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
+			<!-- Bootstrap -->
+			<script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+			<!-- overlayScrollbars -->
+			<script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+			<!-- AdminLTE App -->
+			<script src="{{asset('js/adminlte.js')}}"></script>
+
+			<!-- OPTIONAL SCRIPTS -->
+			<script src="{{asset('js/demo.js')}}"></script>
+
+			<!-- PAGE PLUGINS -->
+			<!-- jQuery Mapael -->
+			<script src="{{asset('plugins/jquery-mousewheel/jquery.mousewheel.js')}}"></script>
+			<script src="{{asset('plugins/raphael/raphael.min.js')}}"></script>
+			<script src="{{asset('plugins/jquery-mapael/jquery.mapael.min.js')}}"></script>
+			<script src="{{asset('plugins/jquery-mapael/maps/usa_states.min.js')}}"></script>
+			<!-- ChartJS -->
+			<script src="{{asset('plugins/chart.js/Chart.min.js')}}"></script>
+
+			<!-- PAGE SCRIPTS -->
+			<script src="{{asset('js/pages/dashboard2.js')}}"></script>
+
 		<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
-		<!-- Bootstrap -->
+		<!-- jQuery UI 1.11.4 -->
+		<script src="{{asset('plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+		<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+		<script>
+		  $.widget.bridge('uibutton', $.ui.button)
+		</script>
+		<!-- Bootstrap 4 -->
 		<script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+		<!-- ChartJS -->
+		<script src="{{asset('plugins/chart.js/Chart.min.js')}}"></script>
+		<!-- Sparkline -->
+		<script src="{{asset('plugins/sparklines/sparkline.js')}}"></script>
+		<!-- JQVMap -->
+		<script src="{{asset('plugins/jqvmap/jquery.vmap.min.js')}}"></script>
+		<script src="{{asset('plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
+		<!-- jQuery Knob Chart -->
+		<script src="{{asset('plugins/jquery-knob/jquery.knob.min.js')}}"></script>
+		<!-- daterangepicker -->
+		<script src="{{asset('plugins/moment/moment.min.js')}}"></script>
+		<script src="{{asset('plugins/daterangepicker/daterangepicker.js')}}"></script>
+		<!-- Tempusdominus Bootstrap 4 -->
+		<script src="{{asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
+		<!-- Summernote -->
+		<script src="{{asset('plugins/summernote/summernote-bs4.min.js')}}"></script>
 		<!-- overlayScrollbars -->
 		<script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 		<!-- AdminLTE App -->
 		<script src="{{asset('js/adminlte.js')}}"></script>
-
-		<!-- OPTIONAL SCRIPTS -->
+		<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+		<script src="{{asset('js/pages/dashboard.js')}}"></script>
+		<!-- AdminLTE for demo purposes -->
 		<script src="{{asset('js/demo.js')}}"></script>
 
-		<!-- PAGE PLUGINS -->
-		<!-- jQuery Mapael -->
-		<script src="{{asset('plugins/jquery-mousewheel/jquery.mousewheel.js')}}"></script>
-		<script src="{{asset('plugins/raphael/raphael.min.js')}}"></script>
-		<script src="{{asset('plugins/jquery-mapael/jquery.mapael.min.js')}}"></script>
-		<script src="{{asset('plugins/jquery-mapael/maps/usa_states.min.js')}}"></script>
-		<!-- ChartJS -->
-		<script src="{{asset('plugins/chart.js/Chart.min.js')}}"></script>
-
-		<!-- PAGE SCRIPTS -->
-		<script src="{{asset('js/pages/dashboard2.js')}}"></script>
-
- 
-
-
-	</body>
-</html>
+		</body>
+	</html>

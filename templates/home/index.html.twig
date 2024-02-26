@@ -1,8 +1,170 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}PARKING ODC{% endblock %}
+{% block title %}PARKING ODC
+{% endblock %}
 
 {% block body %}
 
-<!-- ./wrapper -->
-{% endblock %}
+
+	<section class="content  w-100">
+		<div class="row">
+			<div
+				class="col-lg-3 col-6">
+				<!-- small box -->
+				<div class="small-box bg-info">
+					<div class="inner">
+						<h4>PARKING</h4>
+
+						<p>Liste des parking</p>
+					</div>
+					<div class="icon">
+						<i class="fas fa-car"></i>
+					</div>
+					<a href="park/" class="small-box-footer">More info
+						<i class="fas fa-arrow-circle-right"></i>
+					</a>
+				</div>
+			</div>
+			<!-- ./col -->
+			<div
+				class="col-lg-3 col-6">
+				<!-- small box -->
+				<div class="small-box bg-success">
+					<div class="inner">
+						<h4>
+							UTILISATEURS
+							{# <sup style="font-size: 20px">%</sup> #}
+						</h4>
+
+						<p>Liste des utilisateurs</p>
+					</div>
+					<div class="icon">
+						<i class="fas fa-user"></i>
+					</div>
+					<a href="user/" class="small-box-footer">More info
+						<i class="fas fa-arrow-circle-right"></i>
+					</a>
+				</div>
+			</div>
+			<!-- ./col -->
+			<div
+				class="col-lg-3 col-6">
+				<!-- small box -->
+				<div class="small-box bg-warning">
+					<div class="inner">
+						<h4>PLACES</h4>
+
+						<p>Liste des places</p>
+					</div>
+					<div class="icon">
+						<i class="fas fa-table"></i>
+					</div>
+					<a href="place" class="small-box-footer">More info
+						<i class="fas fa-arrow-circle-right"></i>
+					</a>
+				</div>
+			</div>
+			<!-- ./col -->
+			<div
+				class="col-lg-3 col-6">
+				<!-- small box -->
+				<div class="small-box bg-danger">
+					<div class="inner">
+						<h4>65</h4>
+
+						<p>Unique Visitors</p>
+					</div>
+					<div class="icon">
+						<i class="ion ion-pie-graph"></i>
+					</div>
+					<a href="#" class="small-box-footer">More info
+						<i class="fas fa-arrow-circle-right"></i>
+					</a>
+				</div>
+			</div>
+			<!-- ./col -->
+		</div>
+		<div
+			class="row">
+			<!-- Left col -->
+			<section
+				class="col-lg-7 connectedSortable">
+				<!-- Custom tabs (Charts with tabs)-->
+				<div class="card">
+					{# <div class="card-header">
+												<h3 class="card-title">
+													<i class="fas fa-chart-pie "></i>
+													Traffic Routier
+												</h3>
+												{# <div class="card-tools">
+													<ul class="nav nav-pills ml-auto">
+														<li class="nav-item">
+															<a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
+														</li>
+														<li class="nav-item">
+															<a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
+														</li>
+													</ul>
+												</div> #}
+					{# </div>  #}
+					<!-- /.card-header -->
+						<div class="card-body"> <iframe src="https://embed.waze.com/fr/iframe?zoom=12&lat= 9.64118550&lon=-13.57840120" width="100%" height="360" style="border: 0"></iframe>
+					</div>
+					<!-- /.card-body -->
+				</div>
+			</section>
+			<!-- /.Left col -->
+			<!-- right col (We are only adding the ID to make the widgets sortable)-->
+			<section
+				class="col-lg-5 connectedSortable">
+				<!-- Map card -->
+				<div class="card">
+					<div class="card-header">
+						<h3 class="card-title">
+							<i class="fas fa-chart-pie mr-1"></i>
+							Sales
+						</h3>
+						<div class="card-tools">
+							<ul class="nav nav-pills ml-auto">
+								<li class="nav-item">
+									<a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!-- /.card-header -->
+					<class="card-body">
+						{# <div class="tab-content p-0">
+							<!-- Morris chart - Sales -->
+							<div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;">
+								{{ render_chart(chart) }}
+
+								{# <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>                          #}
+							</div>
+							<div
+								class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
+								{# <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>                          #}
+								{{ render_chart(chart) }}
+
+							</div>
+						{# </div>  #}
+                       
+                                
+                                    {{ render_chart(chart) }}
+                    
+					</div>
+					<!-- /.card-body -->
+				</div>
+				<!-- /.card -->
+			</section>
+			<!-- right col -->
+		</div>
+
+		<!-- /.container-fluid -->
+	</section>
+	<!-- /.content -->
+
+</div>{% endblock %}
