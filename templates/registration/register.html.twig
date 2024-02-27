@@ -1,35 +1,148 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register
+{% block title %}
+    Register
+    
 {% endblock %}
 
 {% block body %}
-	<h1>Register</h1>
+    <h1>
+        Register
+    </h1>
+    <form class="row d-flex justify-content-center w-100 needs-validation" novalidate>
 
-	{{ form_start(registrationForm, {'attr': {'novalidate': 'novalidate'}}) }}
-	<labe>Nom</label>
-	{{ form_errors(registrationForm.firstname) }}
-	{{ form_widget(registrationForm.firstname) }}
+        {% form_theme registrationForm 'bootstrap_5_layout.html.twig' %}
+        {{ form_start(registrationForm, {'attr': {'novalidate': 'novalidate' }}
+        ) }}
+        
+            
+        <div class="row shadow-4 border border-danger w-75 d-flex justify-content-center mb-2">
+            <div class="col-md-6">
+                <labe>
+                    Nom
+                </label>
+                {{ form_errors(registrationForm.firstname) }}
+                {{ form_widget(registrationForm.firstname) }}
+            </div>
 
-	<labe>Prenom</label>
-	{{ form_widget(registrationForm.lastname) }}
+            <div class="col-md-6">
+                <labe>
+                    Prénom
+                </label>
+                {{ form_errors(registrationForm.lastname) }}
+                {{ form_widget(registrationForm.lastname) }}
+            </div>
+            <div class="col-md-6">
+                <labe>
+                    phone
+                </label>
+                {{ form_errors(registrationForm.phone) }}
+                {{ form_widget(registrationForm.phone) }}
+            </div>
+            <div class="col-md-6">
+                <labe>
+                    Email
+                </label>
+                {{ form_errors(registrationForm.email) }}
+                {{ form_widget(registrationForm.email) }}
+            </div>
+            <div class="col-md-6">
+                <labe>
+                    Password
+                </label>
+                {{ form_widget(registrationForm.plainPassword, {
+                    label: 'Password'
+                }) }}
+            </div>
+            <div class="col-md-6">
+                <labe>
+                    Profile
+                </label>
 
-	<labe>phone</label>
-	{{ form_widget(registrationForm.phone) }}
+                {{ form_widget(registrationForm.profile) }}
+            </div>
 
-	<labe>email</label>
-	{{ form_widget(registrationForm.email) }}
+            {# <labe>Nom</label>
+            	{{ form_errors(registrationForm.firstname) }}
+            	{{ form_widget(registrationForm.firstname) }} #}
 
-	<labe>Password</label>
-	{{ form_widget(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
+            {# <labe>Prenom</label>
+            	{{ form_widget(registrationForm.lastname) }}
+            
+            	<labe>phone</label>
+            	{{ form_widget(registrationForm.phone) }} #}
 
-	<labe>Profile</label>
+            {# <labe>email</label>
+            	{{ form_widget(registrationForm.email) }} #}
 
-	{{ form_widget(registrationForm.profile) }}
+            {# <labe>Password</label>
+            	{{ form_widget(registrationForm.plainPassword, {
+                        label: 'Password'
+                    }) }} #}
 
+            {# <labe>Profile</label>
+            
+            	{{ form_widget(registrationForm.profile) }} #}
 
-	<button type="submit" class="btn btn-primary">Register</button>
-	{{ form_end(registrationForm) }}
-{% endblock %}
+                <button type="submit" class="btn btn-primary"> Register
+            </button>
+            {{ form_end(registrationForm) }}
+        </form>
+    {# <form class="row d-flex justify-content-center w-100 needs-validation" novalidate>
+        <div class="row shadow-4 border border-danger w-75 d-flex justify-content-center mb-2">
+          <div class="col-md-6">
+            <label for="validationCustom01" class="form-label">First name</label>
+            <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
+            <div class="valid-feedback">
+              Looks good!
+                    </div>     
+          </div>
+    
+                <div class="col-md-6">
+                    <label for="validationCustom02" class="form-label">Last name</label>
+                    <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+        
+                <div class="col-md-6">
+            <label for="validationCustom01" class="form-label">First name</label>
+            <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
+            <div class="valid-feedback">
+              Looks good!
+                    </div>     
+          </div>
+    
+                <div class="col-md-6">
+                    <label for="validationCustom02" class="form-label">Last name</label>
+                    <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+    
+                <div class="col-md-6">
+            <label for="validationCustom01" class="form-label">First name</label>
+            <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
+            <div class="valid-feedback">
+              Looks good!
+                    </div>     
+          </div>
+    
+                <div class="col-md-6">
+                    <label for="validationCustom02" class="form-label">Last name</label>
+                    <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+        </div>
+    
+          
+        <div class="col-12 d-flex justify-content-center">
+          <button class="btn btn-primary" type="submit">Submit form</button>
+        </div>
+    </form> #}
+    {% endblock %}
+    

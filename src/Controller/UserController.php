@@ -44,7 +44,7 @@ class UserController extends AbstractController
 
             return $this->redirectToRoute('app_user_index');
         }
-        return $this->render('user/index.html.twig', [
+        return $this->render('user/client.html.twig', [
             'users' => $userRepository->findAll(),
             'form' => $form->createView()
         ]);
@@ -95,7 +95,7 @@ class UserController extends AbstractController
 
 
     /**
-     * @Route("/client", name="app_user_delete", methods={"GET"})
+     * @Route("/new", name="app_user_client", methods={"GET", "POST"})
      */
     public function client(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
@@ -118,13 +118,14 @@ class UserController extends AbstractController
             $entityManager->flush();
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('app_user_index');
+            return $this->redirectToRoute('app_user_client');
         }
-        return $this->render('user/index.html.twig', [
-            'users' => $userRepository->findByProfile(["ROLE_GEST"]),
+        return $this->render('user/client.html.twig', [
+            'users' => $userRepository->findAll(),
             'form' => $form->createView()
         ]);
     }
+    
 
 
 }

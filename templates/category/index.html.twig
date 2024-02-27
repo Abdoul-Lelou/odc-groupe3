@@ -5,10 +5,10 @@
 
 {% block body %}
 
-{{ app.user.email }}
+{# {{ app.user.email }} #}
 
 	<div class="col-12">
-		<a href="{{ path('app_category_new') }}" class="btn btn-success">Ajouter categorie</a>
+		<a href="{{ path('app_category_new') }}" class="btn btn-success mb-2">Ajouter categorie</a>
 		<div class="card">
 			<div class="card-header">
 				<h3 class="card-title">Liste des categories</h3>
@@ -46,7 +46,7 @@
 								<td>{{ item.description }}</td>
 
 								<td>
-									<a href="{{ path('edit_category', {'id': item.id}) }}" class="btn btn-primary">Edit</a>
+									<a href="{{ path('edit_category', {'id': item.id}) }}" class="fas fa-edit text-warning" title="modifier"></a>
 								</td>
 							</tr>
 

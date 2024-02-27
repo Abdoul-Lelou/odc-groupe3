@@ -4,7 +4,8 @@ namespace App\Form;
 
 use App\Entity\Park;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,11 +17,11 @@ class ParkType extends AbstractType
             ->add('name')
             ->add('adresse')
             ->add('phone')
-            ->add('open', DateType::class, [
-                'widget' => 'single_text',
+            ->add('open', TimeType::class, [
+                'widget' => 'choice',
             ])
-            ->add('close', DateType::class , [
-                'widget'=> 'single_text'
+            ->add('close', TimeType::class , [
+                'widget'=> 'choice'
             ])
             ->add('categorie')
         ;

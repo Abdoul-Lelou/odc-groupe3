@@ -1,206 +1,210 @@
-<aside
-	class="main-sidebar sidebar-dark-primary elevation-4">
-	<!-- Brand Logo -->
-	<a href="index3.html" class="brand-link">
-		<img src="img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-		<span class="brand-text font-weight-light">Parking ODC</span>
-	</a>
+{% if app.user %}
+	<aside
+		class="main-sidebar sidebar-dark-primary elevation-4">
+		<!-- Brand Logo -->
+		<a href="index3.html" class="brand-link">
+			<img src="img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+			<span class="brand-text font-weight-light">Parking ODC</span>
+		</a>
 
-	<!-- Sidebar -->
-	<div
-		class="sidebar">
-		<!-- Sidebar user panel (optional) -->
-		<div class="user-panel mt-3 pb-3 mb-3 d-flex">
-			<div class="image">
-				<img src="img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+		<!-- Sidebar -->
+		<div
+			class="sidebar">
+			<!-- Sidebar user panel (optional) -->
+			<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+				<div class="image">
+					<img src="img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+				</div>
+				<div class="info">
+					
+						<a href="#" class="d-block">{{ app.user.lastname  }} {{ app.user.firstname  }}</a>
+					
+				</div>
 			</div>
-			<div class="info">
-				<a href="#" class="d-block">{{ app.user.lastname  }} {{ app.user.firstname  }}</a>
-			</div>
-		</div>
 
-		<!-- Sidebar Menu -->
-		<nav class="mt-2">
-			<ul
-				class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-				<!-- Add icons to the links using the .nav-icon class
-																               with font-awesome or any other icon font library -->
+			<!-- Sidebar Menu -->
+			<nav class="mt-2">
+				<ul
+					class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+					<!-- Add icons to the links using the .nav-icon class
+						with font-awesome or any other icon font library -->
 
 
-				<li class="nav-item has-treeview">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-car"></i>
-						<p>
-							Gestion Parking
-							<i class="fas fa-angle-left right"></i>
-
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="/park" class="nav-link">
-								<i class="fas fa-parking"></i>
-								<p>Liste des parking</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="/park/new" class="nav-link">
-								<i class="fas fa-plus"></i>
-								<p>Ajouter</p>
-							</a>
-						</li>
-
-
-					</ul>
-				</li>
-				{% if app.user.profile =="ROLE_SUP_ADM" or app.user.profile =="ROLE_GEST"  %}
 					<li class="nav-item has-treeview">
 						<a href="#" class="nav-link">
-							<i class="fas fa-user"></i>
+							<i class="nav-icon fas fa-car"></i>
 							<p>
-								Utlisateurs
-								<i class="right fas fa-angle-left"></i>
+								Gestion Parking
+								<i class="fas fa-angle-left right"></i>
+
 							</p>
 						</a>
 						<ul class="nav nav-treeview">
 							<li class="nav-item">
-								<a href="/user" class="nav-link">
-									<i class="fas fa-user-check"></i>
+								<a href="/park" class="nav-link">
+									<i class="fas fa-parking"></i>
+									<p>Liste des parking</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="/park/new" class="nav-link">
+									<i class="fas fa-plus"></i>
+									<p>Ajouter</p>
+								</a>
+							</li>
+
+
+						</ul>
+					</li>
+					{% if app.user.profile =="ROLE_SUP_ADM" or app.user.profile =="ROLE_GEST"  %}
+						<li class="nav-item has-treeview">
+							<a href="#" class="nav-link">
+								<i class="fas fa-user"></i>
+								<p>
+									Utlisateurs
+									<i class="right fas fa-angle-left"></i>
+								</p>
+							</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item">
+									<a href="/user" class="nav-link">
+										<i class="fas fa-user-check"></i>
+										<p>Liste</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="/register" class="nav-link">
+										<i class="fas fa-user-plus"></i>
+										<p>Ajout</p>
+									</a>
+								</li>
+
+							</ul>
+						</li>
+					{% endif %}
+
+					<li class="nav-item has-treeview">
+						<a href="#" class="nav-link">
+							<i class="fas fa-users"></i>
+							<p>
+								Client
+								<i class="fas fa-angle-left right"></i>
+							</p>
+						</a>
+						<ul class="nav nav-treeview">
+							<li class="nav-item">
+								<a href="pages/UI/general.html" class="nav-link">
+									<i class="fas fa-user-friends"></i>
 									<p>Liste</p>
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="/register" class="nav-link">
-									<i class="fas fa-user-plus"></i>
-									<p>Ajout</p>
+								<a href="pages/UI/icons.html" class="nav-link">
+									<i class="fas fa-user-ninja"></i>
+									<p>Ajouter</p>
 								</a>
 							</li>
 
 						</ul>
 					</li>
-				{% endif %}
+					<li class="nav-item has-treeview">
+						<a href="#" class="nav-link">
+							<i class="nav-icon fas fa-shipping-fast"></i>
+							<p>
+								Engins
+								<i class="fas fa-angle-left right"></i>
+							</p>
+						</a>
+						<ul class="nav nav-treeview">
+							<li class="nav-item">
+								<a href="pages/forms/general.html" class="nav-link">
+									<i class="fas fa-car-side"></i>
+									<p>Liste</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="pages/forms/general.html" class="nav-link">
+									<i class="far fa-circle nav-icon"></i>
+									<p>Ajouter</p>
+								</a>
+							</li>
 
-				<li class="nav-item has-treeview">
-					<a href="#" class="nav-link">
-						<i class="fas fa-users"></i>
-						<p>
-							Client
-							<i class="fas fa-angle-left right"></i>
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="pages/UI/general.html" class="nav-link">
-								<i class="fas fa-user-friends"></i>
-								<p>Liste</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="pages/UI/icons.html" class="nav-link">
-								<i class="fas fa-user-ninja"></i>
-								<p>Ajouter</p>
-							</a>
-						</li>
+						</ul>
+					</li>
+					<li class="nav-item has-treeview">
+						<a href="#" class="nav-link">
+							<i class="nav-icon fas fa-table"></i>
+							<p>
+								Places
+								<i class="fas fa-angle-left right"></i>
+							</p>
+						</a>
+						<ul class="nav nav-treeview">
+							<li class="nav-item">
+								<a href="pages/tables/simple.html" class="nav-link">
+									<i class="far fa-circle nav-icon"></i>
+									<p>Ajouter</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="/place" class="nav-link">
+									<i class="far fa-circle nav-icon"></i>
+									<p>Liste</p>
+								</a>
+							</li>
 
-					</ul>
-				</li>
-				<li class="nav-item has-treeview">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-shipping-fast"></i>
-						<p>
-							Engins
-							<i class="fas fa-angle-left right"></i>
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="pages/forms/general.html" class="nav-link">
-								<i class="fas fa-car-side"></i>
-								<p>Liste</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="pages/forms/general.html" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Ajouter</p>
-							</a>
-						</li>
+						</ul>
+					</li>
+					<li class="nav-header">Reservation</li>
+					<li class="nav-item">
+						<a href="{{path('app_place')}}" class="nav-link">
+							<i class="nav-icon fas fa-calendar-alt"></i>
+							<p>
+								Liste
 
-					</ul>
-				</li>
-				<li class="nav-item has-treeview">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-table"></i>
-						<p>
-							Places
-							<i class="fas fa-angle-left right"></i>
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="pages/tables/simple.html" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Ajouter</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="/place" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Liste</p>
-							</a>
-						</li>
+							</p>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="pages/gallery.html" class="nav-link">
+							<i class="nav-icon far fa-image"></i>
+							<p>
+								Ajouter
+							</p>
+						</a>
+					</li>
 
-					</ul>
-				</li>
-				<li class="nav-header">Reservation</li>
-				<li class="nav-item">
-					<a href="{{path('app_place')}}" class="nav-link">
-						<i class="nav-icon fas fa-calendar-alt"></i>
-						<p>
-							Liste
+					<li class="nav-header">Configuration</li>
+					<li class="nav-item has-treeview">
+						<a href="#" class="nav-link">
+							<i class="nav-icon fas fa-car"></i>
+							<p>
+								Configuration
+								<i class="fas fa-angle-left right"></i>
 
-						</p>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a href="pages/gallery.html" class="nav-link">
-						<i class="nav-icon far fa-image"></i>
-						<p>
-							Ajouter
-						</p>
-					</a>
-				</li>
-
-				<li class="nav-header">Configuration</li>
-				<li class="nav-item has-treeview">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-car"></i>
-						<p>
-							Configuration
-							<i class="fas fa-angle-left right"></i>
-
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="{{ path('app_structure') }}" class="nav-link">
-								<i class="fas fa-parking"></i>
-								<p>Structure</p>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{ path('app_category_index') }}" class="nav-link">
-								<i class="fas fa-plus"></i>
-								<p>Categorie</p>
-							</a>
-						</li>
+							</p>
+						</a>
+						<ul class="nav nav-treeview">
+							<li class="nav-item">
+								<a href="{{ path('app_structure') }}" class="nav-link">
+									<i class="fas fa-parking"></i>
+									<p>Structure</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{ path('app_category_index') }}" class="nav-link">
+									<i class="fas fa-plus"></i>
+									<p>Categorie</p>
+								</a>
+							</li>
 
 
-					</ul>
-				</li>
-			</ul>
-		</nav>
-		<!-- /.sidebar-menu -->
-	</div>
-	<!-- /.sidebar -->
-</aside>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<!-- /.sidebar-menu -->
+		</div>
+		<!-- /.sidebar -->
+	</aside>
+{% endif %}

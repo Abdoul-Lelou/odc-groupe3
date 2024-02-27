@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/parametrage")
+ * @Route("/category")
  */
 class CategoryController extends AbstractController
 {
@@ -23,7 +23,7 @@ class CategoryController extends AbstractController
     }
     
     /**
-     * @Route("/category", name="app_category_index")
+     * @Route("/", name="app_category_index")
      */
     public function list(): Response
     {
