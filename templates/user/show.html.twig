@@ -3,14 +3,30 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
 
-    <table class="table">
+<div class="d-flex justify-content-center w-100">
+    <table class="table table-bordered  w-75">
+        <caption>
+            <span class="d-flex justify-content-center w-100">
+            <a href="{{ path('app_user_edit', {'id': user.id}) }}" >
+                <button class="fas fa-edit p-2 text-primary" title="modifier"></button>
+            </a>
+                
+            {# <i class="fas fa-trash text-danger p-2" >{{ include('user/_delete_form.html.twig') }}</i> #}
+            <form method="post" action="{{ path('app_user_delete', {'id': user.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                <button type="submit" class="fas fa-trash text-danger p-2" title="supprimer"></button>
+            </form>
+    
+    
+        </span>
+        </caption>
+        
         <tbody>
-            <tr>
+            {# <tr>
                 <th>Id</th>
                 <td>{{ user.id }}</td>
-            </tr>
+            </tr> #}
             <tr>
                 <th>Email</th>
                 <td>{{ user.email }}</td>
@@ -19,10 +35,10 @@
                 <th>Roles</th>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
             </tr>
-            <tr>
+            {# <tr>
                 <th>Password</th>
                 <td>{{ user.password }}</td>
-            </tr>
+            </tr> #}
             <tr>
                 <th>Firstname</th>
                 <td>{{ user.firstname }}</td>
@@ -42,9 +58,10 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_user_index') }}">back to list</a>
+</div>
 
-    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+    {# <a href="{{ path('app_user_index') }}">back to list</a> #}
 
-    {{ include('user/_delete_form.html.twig') }}
+    
+    
 {% endblock %}

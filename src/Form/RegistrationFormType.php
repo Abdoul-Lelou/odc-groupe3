@@ -46,6 +46,12 @@ class RegistrationFormType extends AbstractType
                     'Profile utilisateur' => 'ROLE_USER',
                 ],
             ])
+            ->add('sexe', ChoiceType::class, [
+                'choices'  => [
+                    'Homme' => 'H',
+                    'Femme' => 'F',
+                ],
+            ])
         ;
     }
 

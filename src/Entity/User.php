@@ -27,6 +27,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * 
      */
     private $email;
 
@@ -55,11 +56,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "le prénom doit comporte min  {{ limit }} caractere",
+     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters"
+     * )
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * * @Assert\Length(
+     *      min = 9,
+     *      max = 14,
+     *      minMessage = "le numero doit comporte min  {{ limit }} caractere",
+     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters"
+     * )
      */
     private $phone;
 
@@ -73,9 +86,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $parks;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $sexe;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Stationnement::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $stationnements;
+    
+
     public function __construct()
     {
         $this->parks = new ArrayCollection();
+        $this->stationnements = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -248,5 +273,47 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString()
     {
         return $this->firstname." ".$this->lastname;
+    }
+
+    public function getSexe(): ?string
+    {
+        return $this->sexe;
+    }
+
+    public function setSexe(string $sexe): self
+    {
+        $this->sexe = $sexe;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Stationnement>
+     */
+    public function getStationnements(): Collection
+    {
+        return $this->stationnements;
+    }
+
+    public function addStationnement(Stationnement $stationnement): self
+    {
+        if (!$this->stationnements->contains($stationnement)) {
+            $this->stationnements[] = $stationnement;
+            $stationnement->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStationnement(Stationnement $stationnement): self
+    {
+        if ($this->stationnements->removeElement($stationnement)) {
+            // set the owning side to null (unless already changed)
+            if ($stationnement->getUser() === $this) {
+                $stationnement->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

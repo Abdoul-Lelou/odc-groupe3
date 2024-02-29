@@ -44,12 +44,41 @@ class UserController extends AbstractController
 
             return $this->redirectToRoute('app_user_index');
         }
-        return $this->render('user/client.html.twig', [
+        return $this->render('user/index.html.twig', [
             'users' => $userRepository->findAll(),
             'form' => $form->createView()
         ]);
+
+    //     $users = $userRepository->findAll();
+    // $page = $request->query->getInt('page', 1);
+    // $limit = 10; // Users per page
+
+    // if (count($users) > $limit) {
+    //     $offset = ($page - 1) * $limit;
+    //     $paginatedUsers = array_slice($users, $offset, $limit);
+    //     $totalPages = ceil(count($users) / $limit);
+    // } else {
+    //     $paginatedUsers = $users;
+    //     $totalPages = 1;
+    // }
+
+    // return $this->render('user/index.html.twig', [
+    //     'users' => $paginatedUsers,
+    //     'totalPages' => $totalPages,
+    //     'currentPage' => $page,
+    //     'form' => '$form->createView()',
+    // ]);
     }
 
+    /**
+     * @Route("/client", name="app_user_client", methods={"GET", "POST"})
+     */
+    public function clientuser(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
+    {
+        return $this->render('user/client.html.twig', [
+            'users' => $userRepository->findAll(),
+        ]);
+    }
   
     /**
      * @Route("/{id}", name="app_user_show", methods={"GET"})
@@ -95,7 +124,7 @@ class UserController extends AbstractController
 
 
     /**
-     * @Route("/new", name="app_user_client", methods={"GET", "POST"})
+     * @Route("/new", name="app_user_new", methods={"GET", "POST"})
      */
     public function client(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
@@ -120,12 +149,13 @@ class UserController extends AbstractController
 
             return $this->redirectToRoute('app_user_client');
         }
-        return $this->render('user/client.html.twig', [
+        return $this->render('user/new.html.twig', [
             'users' => $userRepository->findAll(),
             'form' => $form->createView()
         ]);
     }
     
 
+    
 
 }

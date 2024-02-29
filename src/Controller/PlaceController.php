@@ -8,6 +8,7 @@ use App\Form\AddStationnementType;
 use App\Form\PlaceType;
 use App\Repository\ParkRepository;
 use App\Repository\PlaceRepository;
+use App\Repository\StationnementRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,15 +34,16 @@ class PlaceController extends AbstractController
     /**
      * @Route("/{id}/stationnement", name="app_stationnement_place")
      */
-    public function stationnement($id, Request $request) 
+    public function stationnement($id, Request $request, StationnementRepository $stationRepo) 
     {
         $place = $this->placeRepository->findOneById(intval($id));
+        $stationnement = $this->placeRepository->findOneById(intval($id));
 
         $form = $this->createForm(AddStationnementType::class, $place)->handleRequest($request);
 
         if ($form->isSubmitted()) {
             $place->setIsDisponible(false);
-            
+            $stationnement->setDateOutAt(new \DateTimeImmutable());
             $this->placeRepository->add($place, true);
 
             return $this->redirectToRoute('app_place');
@@ -61,7 +63,6 @@ class PlaceController extends AbstractController
         $place=$this->placeRepository->findOneById(intval($id));
         $place->setIsDisponible(true);
         $stationnement=$place->getStationnement();
-
         $stationnement->setDateOutAt(new \DateTimeImmutable());
         $place->setStationnement($stationnement);
 

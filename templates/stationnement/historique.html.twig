@@ -41,7 +41,9 @@
 					</thead>
 					<tbody>
 						{% for station in stations %}
-                            {% if station.user.profile =="ROLE_USER" and app.user.id == station.user.id %}
+                        
+                        {# {{ "now"|date("m/d/Y") }} #}
+                            {% if station.user.profile =="ROLE_USER" and station.createdAt |date('d-m-Y') < "now"|date("d-m-Y")  %}
                                 
                            
 							<tr>

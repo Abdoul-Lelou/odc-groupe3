@@ -1,9 +1,9 @@
 {% if app.user %}
 	<aside
-		class="main-sidebar sidebar-dark-primary elevation-4">
+		class="main-sidebar sidebar-primary elevation-4">
 		<!-- Brand Logo -->
-		<a href="index3.html" class="brand-link">
-			<img src="img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+		<a href="/" class="brand-link">
+			<img src="img/AdminLTELogo.png" alt="ODC" class="brand-image img-circle elevation-3" style="opacity: .8">
 			<span class="brand-text font-weight-light">Parking ODC</span>
 		</a>
 
@@ -11,13 +11,19 @@
 		<div
 			class="sidebar">
 			<!-- Sidebar user panel (optional) -->
-			<div class="user-panel mt-3 pb-3 mb-3 d-flex">
-				<div class="image">
-					<img src="img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+			<div class="user-panel mt-3 pb-3 mb-3 d-flex pe-auto">
+				<div class="image" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+					{# <img src="img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> #}
+					{% if app.user and app.user.sexe =="M" %}
+						<img src="https://bootdey.com/img/Content/avatar/avatar7.png" title="profile" alt={{app.user}} class="rounded-circle" width="150">
+						{% else %}
+						<img src="https://cdn.pixabay.com/photo/2013/07/13/10/19/face-156979_640.png" alt={{app.user}}  class="rounded-circle" width="150">
+
+					{% endif %}
 				</div>
-				<div class="info">
+				<div class="info" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
 					
-						<a href="#" class="d-block">{{ app.user.lastname  }} {{ app.user.firstname  }}</a>
+						<h6 href="#" class="d-block">{{ app.user.lastname  }} {{ app.user.firstname  }}</h6>
 					
 				</div>
 			</div>
@@ -46,12 +52,15 @@
 									<p>Liste des parking</p>
 								</a>
 							</li>
+							{% if app.user.profile =="ROLE_SUP_ADM" or app.user.profile =="ROLE_GEST" %}
+								
 							<li class="nav-item">
 								<a href="/park/new" class="nav-link">
 									<i class="fas fa-plus"></i>
 									<p>Ajouter</p>
 								</a>
 							</li>
+							{% endif %}
 
 
 						</ul>
@@ -81,32 +90,32 @@
 
 							</ul>
 						</li>
+						<li class="nav-item has-treeview">
+							<a href="#" class="nav-link">
+								<i class="fas fa-users"></i>
+								<p>
+									Client
+									<i class="fas fa-angle-left right"></i>
+								</p>
+							</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item">
+									<a href="/user/client" class="nav-link">
+										<i class="fas fa-user-friends"></i>
+										<p>Liste</p>
+									</a>
+								</li>
+								{# <li class="nav-item">
+									<a href="pages/UI/icons.html" class="nav-link">
+										<i class="fas fa-user-ninja"></i>
+										<p>Ajouter</p>
+									</a>
+								</li> #}
+	
+							</ul>
+						</li>
 					{% endif %}
 
-					<li class="nav-item has-treeview">
-						<a href="#" class="nav-link">
-							<i class="fas fa-users"></i>
-							<p>
-								Client
-								<i class="fas fa-angle-left right"></i>
-							</p>
-						</a>
-						<ul class="nav nav-treeview">
-							<li class="nav-item">
-								<a href="pages/UI/general.html" class="nav-link">
-									<i class="fas fa-user-friends"></i>
-									<p>Liste</p>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="pages/UI/icons.html" class="nav-link">
-									<i class="fas fa-user-ninja"></i>
-									<p>Ajouter</p>
-								</a>
-							</li>
-
-						</ul>
-					</li>
 					<li class="nav-item has-treeview">
 						<a href="#" class="nav-link">
 							<i class="nav-icon fas fa-shipping-fast"></i>
@@ -117,17 +126,19 @@
 						</a>
 						<ul class="nav nav-treeview">
 							<li class="nav-item">
-								<a href="pages/forms/general.html" class="nav-link">
+								<a href="/category" class="nav-link">
 									<i class="fas fa-car-side"></i>
 									<p>Liste</p>
 								</a>
 							</li>
+							{% if app.user.profile =="ROLE_SUP_ADM" %}
 							<li class="nav-item">
-								<a href="pages/forms/general.html" class="nav-link">
-									<i class="far fa-circle nav-icon"></i>
-									<p>Ajouter</p>
-								</a>
-							</li>
+							<a href="pages/forms/general.html" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Ajouter</p>
+							</a>
+						</li>
+							{% endif %}
 
 						</ul>
 					</li>
@@ -140,12 +151,15 @@
 							</p>
 						</a>
 						<ul class="nav nav-treeview">
-							<li class="nav-item">
-								<a href="pages/tables/simple.html" class="nav-link">
-									<i class="far fa-circle nav-icon"></i>
-									<p>Ajouter</p>
-								</a>
-							</li>
+						{# {% if app.user.profile =="ROLE_SUP_ADM" %}
+							
+						<li class="nav-item">
+							<a href="pages/tables/simple.html" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Ajouter</p>
+							</a>
+						</li>
+						{% endif %} #}
 							<li class="nav-item">
 								<a href="/place" class="nav-link">
 									<i class="far fa-circle nav-icon"></i>
@@ -155,52 +169,81 @@
 
 						</ul>
 					</li>
-					<li class="nav-header">Reservation</li>
-					<li class="nav-item">
-						<a href="{{path('app_place')}}" class="nav-link">
-							<i class="nav-icon fas fa-calendar-alt"></i>
-							<p>
-								Liste
 
-							</p>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a href="pages/gallery.html" class="nav-link">
-							<i class="nav-icon far fa-image"></i>
-							<p>
-								Ajouter
-							</p>
-						</a>
-					</li>
-
-					<li class="nav-header">Configuration</li>
 					<li class="nav-item has-treeview">
 						<a href="#" class="nav-link">
-							<i class="nav-icon fas fa-car"></i>
+							<i class="nav-icon fas fa-archive"></i>
 							<p>
-								Configuration
+								Stationnement
 								<i class="fas fa-angle-left right"></i>
-
 							</p>
 						</a>
 						<ul class="nav nav-treeview">
 							<li class="nav-item">
-								<a href="{{ path('app_structure') }}" class="nav-link">
-									<i class="fas fa-parking"></i>
-									<p>Structure</p>
+								<a href="/stationnement" class="nav-link">
+									<i class="fas fa-car-side"></i>
+									<p>Liste</p>
 								</a>
 							</li>
+							{% if app.user.profile =="ROLE_SUP_ADM" %}
 							<li class="nav-item">
-								<a href="{{ path('app_category_index') }}" class="nav-link">
-									<i class="fas fa-plus"></i>
-									<p>Categorie</p>
-								</a>
-							</li>
-
+							<a href="/historique" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>historique</p>
+							</a>
+						</li>
+							{% endif %}
 
 						</ul>
 					</li>
+					{% if app.user.profile =="ROLE_SUP_ADM" or app.user.profile =="ROLE_GEST" %}
+				{# <li class="nav-header">Reservation</li>
+				<li class="nav-item">
+					<a href="{{path('app_place')}}" class="nav-link">
+						<i class="nav-icon fas fa-calendar-alt"></i>
+						<p>
+							Liste
+
+						</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="pages/gallery.html" class="nav-link">
+						<i class="nav-icon far fa-image"></i>
+						<p>
+							Ajouter
+						</p>
+					</a>
+				</li> #}
+
+				<li class="nav-header">Configuration</li>
+				<li class="nav-item has-treeview">
+					<a href="#" class="nav-link">
+						<i class="nav-icon fas fa-car"></i>
+						<p>
+							Configuration
+							<i class="fas fa-angle-left right"></i>
+
+						</p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a href="{{ path('app_structure') }}" class="nav-link">
+								<i class="fas fa-parking"></i>
+								<p>Structure</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ path('app_category_index') }}" class="nav-link">
+								<i class="fas fa-plus"></i>
+								<p>Categorie</p>
+							</a>
+						</li>
+
+
+					</ul>
+				</li>
+					{% endif %}
 				</ul>
 			</nav>
 			<!-- /.sidebar-menu -->

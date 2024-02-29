@@ -59,6 +59,14 @@ class Stationnement
      */
     private $telephone;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="stationnements")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
@@ -164,4 +172,18 @@ class Stationnement
 
         return $this;
     }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+
 }

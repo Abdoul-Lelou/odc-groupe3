@@ -138,7 +138,8 @@ class ParkController extends AbstractController
     public function addGestionnaire($id, Request $request, UserRepository $userRepository)
     {
         $user_gestionnaire = $userRepository->findBy(['profile' => self::ROLES_GESTIONNAIRE]);
-        $park = $this->parkRepository->findOneById("intval($id)");
+        
+        $park = $this->parkRepository->findOneById(intval($id));
 
         $form = $this->createForm(AddManagerType::class, $park)->handleRequest($request);
 

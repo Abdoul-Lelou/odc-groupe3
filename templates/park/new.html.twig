@@ -8,9 +8,75 @@
 	{# {{ include('park/_form.html.twig') }}
 	
 	    <a href="{{ path('app_park_index') }}">back to list</a> #}
+        {{ include('park/_form.html.twig') }}
 
-    <h4 class="text">AJOUTER PARKING</h4>
-	<form class="row d-flex justify-content-center w-100 needs-validation" novalidate>
+    {# <a href="{{ path('app_park_index') }}">back to list</a> #}
+
+    {# <h4 class="text">AJOUTER PARKING</h4> #}
+
+    {# <form class="row d-flex justify-content-center w-100 needs-validation" novalidate>
+
+        {% form_theme form 'bootstrap_5_layout.html.twig' %}
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate' }}
+        ) }}
+        
+            
+        <div class="row shadow-4 border border-danger w-75 d-flex justify-content-center mb-2">
+            <div class="col-md-6">
+                <labe>
+                    Nom park
+                </label>
+                {{ form_errors(form.name) }}
+                {{ form_widget(form.name) }}
+            </div>
+
+            <div class="col-md-6">
+                <labe>
+                    Adresse
+                </label>
+                {{ form_errors(form.adresse) }}
+                {{ form_widget(form.adresse) }}
+            </div>
+            <div class="col-md-4">
+                <labe>
+                    phone
+                </label>
+                {{ form_errors(form.phone) }}
+                {{ form_widget(form.phone) }}
+            </div>
+            <div class="col-md-4">
+                <labe>
+                    Categorie
+                </label>
+                {{ form_errors(form.categorie) }}
+                {{ form_widget(form.categorie) }}
+            </div>
+            <div class="col-md-4">
+                <labe>
+                    Ouvert
+                </label>
+                {{ form_errors(form.open) }}
+                {{ form_widget(form.open) }}
+            </div>
+            <div class="col-md-4">
+                <labe>
+                    Client
+                </label>
+                {{ form_errors(form.user) }}
+                {{ form_widget(form.user) }}
+            </div>
+
+            
+
+            <button type="submit" class="btn btn-primary"> Register
+            </button>
+                {{ form_end(form) }}
+        </form> #}
+
+
+
+
+	{# <form class="row d-flex justify-content-center w-100 needs-validation" novalidate>
 		<div class="row shadow-4 border border-danger w-75 d-flex justify-content-center mb-2">
 			<div class="col-md-6">
 				<label for="validationCustom01" class="form-label">First name</label>
@@ -67,7 +133,7 @@
 		<div class="col-12 d-flex justify-content-center">
 			<button class="btn btn-primary" type="submit">Submit form</button>
 		</div>
-	</form>
+	</form> #}
 
 
 {% endblock %}

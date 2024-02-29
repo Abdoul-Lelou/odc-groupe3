@@ -8,7 +8,10 @@
 {# {{ app.user.email }} #}
 
 	<div class="col-12">
-		<a href="{{ path('app_category_new') }}" class="btn btn-success mb-2">Ajouter categorie</a>
+		{% if app.user.profile =="ROLE_SUP_ADM" %}
+			
+	<a href="{{ path('app_category_new') }}" class="btn btn-success mb-2">Ajouter categorie</a>
+		{% endif %}
 		<div class="card">
 			<div class="card-header">
 				<h3 class="card-title">Liste des categories</h3>
@@ -34,7 +37,10 @@
 							<th>ID</th>
 							<th>Categorie</th>
 							<th>Description</th>
+								{% if app.user.profile =="ROLE_SUP_ADM" %}
+									
 							<th>Action</th>
+								{% endif %}
 						</tr>
 					</thead>
 					<tbody>
@@ -44,10 +50,12 @@
 								<td>{{ item.id }}</td>
 								<td>{{ item.name }}</td>
 								<td>{{ item.description }}</td>
-
-								<td>
-									<a href="{{ path('edit_category', {'id': item.id}) }}" class="fas fa-edit text-warning" title="modifier"></a>
-								</td>
+{% if app.user.profile =="ROLE_SUP_ADM" %}
+	
+<td>
+	<a href="{{ path('edit_category', {'id': item.id}) }}" class="fas fa-edit text-warning" title="modifier"></a>
+</td>
+{% endif %}
 							</tr>
 
 						{% endfor %}

@@ -1,4 +1,22 @@
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
 {{ form_start(form) }}
+        {# <label for="">Prix</label>
+        {{ form_errors(form.price) }}
+		{{ form_widget(form.price) }}
+    <label for="">Prix</label>
+    {{ form_errors(form.immatriculation) }}
+    {{ form_widget(form.immatriculation) }}
+<label for="">Prix</label>
+{{ form_errors(form.couleur) }}
+{{ form_widget(form.couleur) }}
+<label for="">Prix</label>
+{{ form_errors(form.marque) }}
+{{ form_widget(form.marque) }}
+<label for="">Prix</label>
+{{ form_errors(form.telephone) }}
+{{ form_widget(form.telephone) }} #}
+
+        
     <button type="submit" class="btn btn-success">Stationner</button>
 
 {{ form_end(form) }}

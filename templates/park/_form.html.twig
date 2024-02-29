@@ -1,55 +1,48 @@
-<script src="{{ asset('js/page/addUser.js') }}"></script>
-	<div class="col-lg-8 offset-md-2">
+<div class="col-lg-8 offset-md-2">
 
-		<div class="card card-primary">
-			<div class="card-header">
-				<h3 class="card-title">Ajout park</h3>
-			</div>
-			<!-- /.card-header -->
-			<!-- form start -->
+	<div class="card card-primary">
+		<div class="card-header">
+			<h3 class="card-title">Ajout park</h3>
+		</div>
+
+		<div class="card-body">
+			{# {% form_theme form 'bootstrap_5_layout.html.twig' %} #}
 			{{ form_start(form) }}
-			<div class="card-body">
-				<div class="form-group">
+			<div class="row   w-100 m-0 d-flex justify-content-center mb-2">
+				<div class="col-md-6">
 					<label for="exampleInputEmail1">Categorie</label>
 					{{ form_widget(form.categorie, {'attr':{'class':'form-control'}}) }}
 				</div>
-
-				<div class="form-group">
+				<div class="col-md-6">
 					<label for="exampleInputEmail1">Nom</label>
 					{{ form_widget(form.name, {'attr':{'class':'form-control'}}) }}
 				</div>
-
-				<div class="form-group">
+				<div class="col-md-6">
 					<label for="exampleInputEmail1">Adresse</label>
 					{{ form_widget(form.adresse, {'attr':{'class':'form-control'}}) }}
 				</div>
-
-
-				<div class="form-group">
+				<div class="col-md-6">
 					<label for="exampleInputEmail1">Telephone</label>
 					{{ form_widget(form.phone, {'attr':{'class':'form-control'}}) }}
 				</div>
-
-
-				<div class="form-group">
-					<label for="exampleInputEmail1">Ouverture</label>
-					{{ form_widget(form.open, {'attr':{'class':'form-control'}}) }}
+				<div class="col-md-12">
+					<label for="Gestionnaire">Gestionnaire</label>
+					{{ form_widget(form.user, {'attr':{'class':'form-control'}}) }}
 				</div>
-
-				<div class="form-group">
-					<label for="exampleInputEmail1">Fermeture</label>
-					{{ form_widget(form.close, {'attr':{'class':'form-control'}}) }}
+				<div class="col-md-6">
+					<label for="Ouverture">Ouverture</label>
+					{{ form_widget(form.open) }}
 				</div>
-
-
-			</div>
-			<!-- /.card-body -->
-
-			<div class="card-footer">
-				<button type="submit" class="btn btn-primary btn-submit">Submit</button>
+				<div class="col-md-6">
+					<label for="Fermeture">Fermeture</label>
+					{{ form_widget(form.close) }}
+				</div>
+				<button type="submit" class="btn btn-primary m-0 mt-2"> Ajouter
+				</button>
 			</div>
 			{{ form_end(form) }}
 		</div>
-
-
 	</div>
+
+
+</div>

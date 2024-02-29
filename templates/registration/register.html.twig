@@ -1,148 +1,76 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Register
-    
+	Register
+
 {% endblock %}
 
 {% block body %}
-    <h1>
-        Register
-    </h1>
-    <form class="row d-flex justify-content-center w-100 needs-validation" novalidate>
+	
+	{% for message in app.flashes('success') %}
+		<div class='alert alert-success d-flex justify-content-center'>
+			{{message}}
+		</div>
+	{% endfor %}
 
-        {% form_theme registrationForm 'bootstrap_5_layout.html.twig' %}
-        {{ form_start(registrationForm, {'attr': {'novalidate': 'novalidate' }}
-        ) }}
-        
-            
-        <div class="row shadow-4 border border-danger w-75 d-flex justify-content-center mb-2">
-            <div class="col-md-6">
-                <labe>
-                    Nom
-                </label>
-                {{ form_errors(registrationForm.firstname) }}
-                {{ form_widget(registrationForm.firstname) }}
-            </div>
+	{{ form_start(registrationForm, {'attr': {'novalidate': 'novalidate'}}) }}
+	<span class="d-flex justify-content-center mb-2">
+		<div class="row d-flex justify-content-center p-2 w-75 m-0 border needs-validation">
+			<div class="col col-md-6 w-100">
+				<labe>Nom</label>
+				{{ form_errors(registrationForm.firstname) }}
+				{{ form_widget(registrationForm.firstname) }}
+			</div>
 
-            <div class="col-md-6">
-                <labe>
-                    Prénom
-                </label>
-                {{ form_errors(registrationForm.lastname) }}
-                {{ form_widget(registrationForm.lastname) }}
-            </div>
-            <div class="col-md-6">
-                <labe>
-                    phone
-                </label>
-                {{ form_errors(registrationForm.phone) }}
-                {{ form_widget(registrationForm.phone) }}
-            </div>
-            <div class="col-md-6">
-                <labe>
-                    Email
-                </label>
-                {{ form_errors(registrationForm.email) }}
-                {{ form_widget(registrationForm.email) }}
-            </div>
-            <div class="col-md-6">
-                <labe>
-                    Password
-                </label>
-                {{ form_widget(registrationForm.plainPassword, {
-                    label: 'Password'
-                }) }}
-            </div>
-            <div class="col-md-6">
-                <labe>
-                    Profile
-                </label>
+			<div class="col col-md-6">
+				<labe>Prenom</label>
+				{{ form_widget(registrationForm.lastname) }}
+				{{ form_errors(registrationForm.lastname) }}
+			</div>
 
-                {{ form_widget(registrationForm.profile) }}
-            </div>
+			<div class="col-md-6">
+				<labe>
+					phone
+				</label>
+				{{ form_errors(registrationForm.phone) }}
+				{{ form_widget(registrationForm.phone) }}
+			</div>
+			<div class="col-md-6">
+				<labe>
+					Email
+				</label>
+				{{ form_errors(registrationForm.email) }}
+				{{ form_widget(registrationForm.email) }}
+			</div>
 
-            {# <labe>Nom</label>
-            	{{ form_errors(registrationForm.firstname) }}
-            	{{ form_widget(registrationForm.firstname) }} #}
+			<div class="col-md-6">
+				<labe>
+					Password
+				</label>
+				{{ form_widget(registrationForm.plainPassword, {
+						label: 'Password'
+					}) }}
+			</div>
+			<div class="col-md-3">
+				<labe>
+					Profile
+				</label>
 
-            {# <labe>Prenom</label>
-            	{{ form_widget(registrationForm.lastname) }}
-            
-            	<labe>phone</label>
-            	{{ form_widget(registrationForm.phone) }} #}
+				{{ form_widget(registrationForm.profile,{'attr':{'class':'form-control'}}) }}
+			</div>
 
-            {# <labe>email</label>
-            	{{ form_widget(registrationForm.email) }} #}
+			<div class="col-md-3">
+				<labe>
+					Sexe
+				</label>
 
-            {# <labe>Password</label>
-            	{{ form_widget(registrationForm.plainPassword, {
-                        label: 'Password'
-                    }) }} #}
+				{{ form_widget(registrationForm.sexe,{'attr':{'class':'form-control'}}) }}
+			</div>
 
-            {# <labe>Profile</label>
-            
-            	{{ form_widget(registrationForm.profile) }} #}
-
-                <button type="submit" class="btn btn-primary"> Register
-            </button>
-            {{ form_end(registrationForm) }}
-        </form>
-    {# <form class="row d-flex justify-content-center w-100 needs-validation" novalidate>
-        <div class="row shadow-4 border border-danger w-75 d-flex justify-content-center mb-2">
-          <div class="col-md-6">
-            <label for="validationCustom01" class="form-label">First name</label>
-            <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
-            <div class="valid-feedback">
-              Looks good!
-                    </div>     
-          </div>
-    
-                <div class="col-md-6">
-                    <label for="validationCustom02" class="form-label">Last name</label>
-                    <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                </div>
-        
-                <div class="col-md-6">
-            <label for="validationCustom01" class="form-label">First name</label>
-            <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
-            <div class="valid-feedback">
-              Looks good!
-                    </div>     
-          </div>
-    
-                <div class="col-md-6">
-                    <label for="validationCustom02" class="form-label">Last name</label>
-                    <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                </div>
-    
-                <div class="col-md-6">
-            <label for="validationCustom01" class="form-label">First name</label>
-            <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
-            <div class="valid-feedback">
-              Looks good!
-                    </div>     
-          </div>
-    
-                <div class="col-md-6">
-                    <label for="validationCustom02" class="form-label">Last name</label>
-                    <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                </div>
-        </div>
-    
-          
-        <div class="col-12 d-flex justify-content-center">
-          <button class="btn btn-primary" type="submit">Submit form</button>
-        </div>
-    </form> #}
-    {% endblock %}
-    
+		</div>
+	</span>
+	<div class="d-flex justify-content-center">
+		<button type="submit" class="btn btn-primary ">Register</button>
+	</div>
+	{{ form_end(registrationForm) }}
+{% endblock %}

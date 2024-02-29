@@ -5,22 +5,25 @@
 
 {% block body %}
 	<div class="col-12">
-		<a href="{{ path('app_park_new') }}" class="btn btn-success mb-2">Ajouter park</a>
+		{% if app.user.profile =="ROLE_SUP_ADM" %}
+
+			<a href="{{ path('app_park_new') }}" class="btn btn-success mb-2">Ajouter park</a>
+		{% endif %}
 		<div class="card">
 			<div class="card-header">
 				<h3 class="card-title">Liste des parks</h3>
 
 				{# <div class="card-tools">
-					<div class="input-group input-group-sm" style="width: 150px;">
-						<input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-						<div class="input-group-append">
-							<button type="submit" class="btn btn-default">
-								<i class="fas fa-search"></i>
-							</button>
-						</div>
-					</div>
-				</div> #}
+									<div class="input-group input-group-sm" style="width: 150px;">
+										<input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+				
+										<div class="input-group-append">
+											<button type="submit" class="btn btn-default">
+												<i class="fas fa-search"></i>
+											</button>
+										</div>
+									</div>
+								</div> #}
 			</div>
 			<!-- /.card-header -->
 			<div class="card-body table-responsive p-0">
@@ -28,7 +31,7 @@
 					<thead>
 						<tr>
 							<th>#</th>
-							<th>ID</th>
+							{# <th>ID</th> #}
 							<th>Park</th>
 							<th>Adresse</th>
 							<th>telephone</th>
@@ -36,38 +39,62 @@
 							<th>Heure Ferm</th>
 							<th>Categorie Park</th>
 							<th>Manager</th>
-							<th>Action</th>
+							{% if app.user.profile =="ROLE_SUP_ADM" %}
+								<th>Action</th>
+							{% endif %}
 						</tr>
 					</thead>
 					<tbody>
 						{% for item in parks %}
 							<tr>
 								<td>{{ loop.index }}</td>
-								<td>{{ item.id }}</td>
+								{# <td>{{ item.id }}</td> #}
 								<td>{{ item.name }}</td>
 								<td>{{ item.adresse }}</td>
 								<td>{{ item.phone }}</td>
-								<td>{{ item.open|date('d/m | h:m:s') }}</td>
-								<td>{{ item.close|date('d/m | h:m:s') }}</td>
+								<td>{{ item.open|date(' h:m:s') }}</td>
+								<td>{{ item.close|date(' h:m:s') }}</td>
 								<td>{{ item.categorie }}</td>
-								<td class="d-flex justify-content-center">
-									{% if item.user != null %}
-										<a href="#">{{ item.user.firstName }}</a>
+								{% if app.user.profile =="ROLE_SUP_ADM" %}
+									<td class="d-flex justify-content-center">
+										{% if item.user != null %}
+											<a href="#">{{ item.user.firstName }}</a>
 
-									{% else %}
-										<a href="{{ path('app_add_gestionaire', {'id': item.id}) }}" class="fas fa-user-circle mt-1 text-success"></a>
-									{% endif %}
-								</td>
+										{% else %}
+											<a href="{{ path('app_add_gestionaire', {'id': item.id}) }}" class="fas fa-user-circle mt-1 text-success"></a>
+										{% endif %}
+									</td>
+								{% else %}
+									<td class="d-flex justify-content-center">
+										{% if item.user != null %}
+											<i>{{ item.user.firstName }}</i>
 
-								<td>
-									{# ajout-place #}
-									<a href="{{ path('app_park_edit', {'id': item.id}) }}" class="fas fa-edit text-secondary" title="add manager"></a>
-									|
-									<a href="{{ path('app_park_show', {'id': item.id}) }}" class="fas fa-location-arrow text-warning" title="place"></a>
-									|
-									<a href="{{ path('app_park_delete', {'id': item.id}) }}" class="fas fa-trash text-danger"  title="supprimer"></a>
+											{# {% else %}
+																						<i href="{{ path('app_add_gestionaire', {'id': item.id}) }}" class="fas fa-user-circle mt-1 text-success"></i> #}
+										{% endif %}
+									</td>
+								{% endif %}
 
-								</td>
+
+								{# {% if app.user.profile =="ROLE_SUP_ADM" %} #}
+									<td>
+										{# ajout-place #}
+										<span class='d-flex justify-content-center p-1'>
+											<a  href="{{ path('app_park_edit', {'id': item.id}) }}"  title="add manager">
+												<button class="fas fa-edit text-secondary border border-none  mb-2"> </button>
+											</a>
+											|
+											<a href="{{ path('app_park_show', {'id': item.id}) }}" title="place">
+												<button class="fas fa-location-arrow text-warning border border-none  mb-2"></button>
+											</a>
+											|
+											{# <a href="{{ path('app_park_delete', {'id': item.id}) }}" class="fas fa-trash text-danger"  title="supprimer"> #}
+											{{ include('park/_delete_form.html.twig') }}
+										</span>
+										{# </a> #}
+									</td>
+								{# {% endif %} #}
+
 							</tr>
 
 						{% endfor %}

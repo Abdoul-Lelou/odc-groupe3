@@ -31,9 +31,18 @@
 						<tr>
 							<th>#</th>
 							<th>ID</th>
+								{% if app.user.profile =="ROLE_SUP_ADM" or app.user.profile =="ROLE_GEST" %}
+									
 							<th>Code</th>
+								{% endif %}
+							<th>Park</th>
+							{# <th>User</th> #}
+
                             <th>Status</th>
-                            <th>Action</th>
+							{% if app.user.profile =="ROLE_SUP_ADM" %}
+								
+							<th>Action</th>
+							{% endif %}	
 						</tr>
 					</thead>
 					<tbody>
@@ -41,15 +50,29 @@
 							<tr>
 								<td>{{ loop.index }}</td>
 								<td>{{ place.id }}</td>
+									{% if app.user.profile =="ROLE_SUP_ADM" or app.user.profile =="ROLE_GEST" %}
+									
 								<td>{{ place.code }}</td>
-                                <td>{{ place.isDisponible }} </td>
+									{% endif %}
+								<td>{{ place.park.name }}</td>	
+								{# <td>{{ place.user }}</td>	 #}
 
-                                {% if place.isDisponible %}
-                            		<td> <a href="{{ path('app_stationnement_place', {'id':place.id}) }}" class="btn btn-success">+ stationnement</a></td>
-                                {% else %}
-                            		<td><a href="{{path('app_out',{'id':place.id}) }}" class="btn btn-success">Sortie de stationnement</a></td>
-                        
-                                {% endif %}
+								{# <td>{{ place.user.firstname }}</td> #}
+								{% if place.isDisponible %}
+								<td class="badge bg-success">Disponible</td>
+									{% else %}
+								<td class="badge bg-danger">Occupée</td>
+								{% endif %}	
+                                {# <td>{{ place.isDisponible }} </td> #}
+								{% if app.user.profile =="ROLE_SUP_ADM" %}
+									{% if place.isDisponible %}
+										<td> <a href="{{ path('app_stationnement_place', {'id':place.id}) }}" class="btn btn-success">+ stationnement</a></td>
+									{% else %}
+										<td><a href="{{path('app_out',{'id':place.id}) }}" class="btn btn-success">Sortie de stationnement</a></td>
+							
+									{% endif %}
+								{% endif %}
+                                
                                     
                                 
 							</tr>

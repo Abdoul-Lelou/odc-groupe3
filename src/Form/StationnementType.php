@@ -18,6 +18,8 @@ class StationnementType extends AbstractType
             ->add('couleur', ColorType::class)
             ->add('marque')
             ->add('telephone')
+            ->add('user')
+
         ;
     }
 

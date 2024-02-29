@@ -16,12 +16,13 @@ class ParkType extends AbstractType
         $builder
             ->add('name')
             ->add('adresse')
+            ->add('user')
             ->add('phone')
             ->add('open', TimeType::class, [
-                'widget' => 'choice',
+                'widget' => 'single_text',
             ])
             ->add('close', TimeType::class , [
-                'widget'=> 'choice'
+                'widget'=> 'single_text'
             ])
             ->add('categorie')
         ;

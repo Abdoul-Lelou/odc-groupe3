@@ -37,6 +37,7 @@ class Place
      */
     private $isDisponible;
 
+
     public function __construct()
     {
         $this->isDisponible = true;
@@ -104,4 +105,5 @@ class Place
     {
         return $this->code;
     }
+
 }
