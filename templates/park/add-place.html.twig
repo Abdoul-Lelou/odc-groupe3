@@ -1,3 +1,31 @@
-{{ form_start(form) }}
-<button type="submit" class="btn btn-primary">Submit</button>
-{{ form_end(form) }}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="col-lg-8 offset-md-2">
+
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Ajout place</h3>
+    </div>
+
+    <div class="card-body">
+        {# {% form_theme form 'bootstrap_5_layout.html.twig' %} #}
+        {{ form_start(form) }}
+        <div class="row   w-100 m-0 d-flex justify-content-center mb-2">
+            <div class="col-md-6">
+                <label for="exampleInputEmail1">Code</label>
+                {{ form_widget(form.code, {'attr':{'class':'form-control'}}) }}
+            </div>
+            
+            <span class="col-md-12 d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary m-0 mt-2"> Ajouter
+            </button>
+            </span>
+        </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+
+
+</div>
+{% endblock %}

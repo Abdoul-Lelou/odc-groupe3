@@ -61,6 +61,26 @@
 						{% endfor %}
 
 					</tbody>
+					<caption>
+						{% if totalPages > 1 %}
+					<ul class="pagination">
+						<li {% if currentPage == 1 %}class="disabled"{% endif %}>
+							<a href="?page={{ currentPage - 1 }}" class="fas fa-arrow-left "></a>
+						</li>
+				
+						{% for page in 1..totalPages %}
+							<li {% if page == currentPage %}class="active"{% endif %}>
+								<a href="?page={{ page }}"class="p-2">{{ page }}</a>
+							</li>
+						{% endfor %}
+				
+						<li {% if currentPage == totalPages %}class="disabled"{% endif %}>
+							<a href="?page={{ currentPage + 1 }}" class="fas fa-arrow-right "></a>
+						</li>
+					</ul>
+				{% endif %}
+					
+					</caption>
 				</table>
 			</div>
 			<!-- /.card-body -->

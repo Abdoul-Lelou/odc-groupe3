@@ -8,6 +8,7 @@
 
 {% block body %}
 	<div class="col-12">
+{# <a href="{{ path("app_ajout_place")}}" class="btn btn-success mb-2">Ajouter place</a> #}
 		<div class="card">
 			<div class="card-header">
 				<h3 class="card-title">Liste des places</h3>
@@ -35,7 +36,7 @@
 									
 							<th>Code</th>
 								{% endif %}
-							<th>Park</th>
+							{# <th>Park</th> #}
 							{# <th>User</th> #}
 
                             <th>Status</th>
@@ -46,6 +47,7 @@
 						</tr>
 					</thead>
 					<tbody>
+					
 						{% for place in places %}
 							<tr>
 								<td>{{ loop.index }}</td>
@@ -54,7 +56,7 @@
 									
 								<td>{{ place.code }}</td>
 									{% endif %}
-								<td>{{ place.park.name }}</td>	
+								{# <td>{{ place.park.name }}</td>	 #}
 								{# <td>{{ place.user }}</td>	 #}
 
 								{# <td>{{ place.user.firstname }}</td> #}
@@ -66,7 +68,8 @@
                                 {# <td>{{ place.isDisponible }} </td> #}
 								{% if app.user.profile =="ROLE_SUP_ADM" %}
 									{% if place.isDisponible %}
-										<td> <a href="{{ path('app_stationnement_place', {'id':place.id}) }}" class="btn btn-success">+ stationnement</a></td>
+										<td> 
+										<a href="{{ path('app_stationnement_place', {'id':place.id}) }}" class="btn btn-success" >+ stationnement</a></td>
 									{% else %}
 										<td><a href="{{path('app_out',{'id':place.id}) }}" class="btn btn-success">Sortie de stationnement</a></td>
 							
@@ -77,6 +80,9 @@
                                 
 							</tr>
 
+							<!-- Modal -->
+
+
 						{% endfor %}
 
 					</tbody>
@@ -86,4 +92,8 @@
 		</div>
 		<!-- /.card -->
 	</div>
+
+	<!-- Button trigger modal -->
+	
+
 {% endblock %}

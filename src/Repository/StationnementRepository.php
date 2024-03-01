@@ -45,7 +45,7 @@ class StationnementRepository extends ServiceEntityRepository
    public function findByDateLess($value): array
    {
        return $this->createQueryBuilder('s')
-           ->andWhere('s.createdAt <= :val')
+           ->andWhere('s.createdAt < :val')
            ->setParameter('val', $value)
            ->orderBy('s.id', 'ASC')
         //    ->setMaxResults(10)

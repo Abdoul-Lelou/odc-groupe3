@@ -1,4 +1,32 @@
-{{ form_start(form) }}
 
-<button type="submit"> Envoyer</button>
-{{ form_end(form) }}
+{% include 'base.html.twig' %}
+<div class="col-lg-8 offset-md-4">
+
+	<div class="card card-primary w-75">
+		<div class="card-header">
+			<h3 class="card-title">Ajout engin</h3>
+		</div>
+
+		<div class="card-body">
+			{# {% form_theme form 'bootstrap_5_layout.html.twig' %} #}
+			{{ form_start(form) }}
+			<div class="row d-flex justify-content-center ">
+				<div class="col-md-12">
+					<label for="exampleInputEmail1">Nom</label>
+					{{ form_widget(form.name, {'attr':{'class':'form-control'}}) }}
+				</div>
+				<div class="col-md-12">
+					<label for="exampleInputEmail1">Description</label>
+					{{ form_widget(form.description, {'attr':{'class':'form-control'}}) }}
+				</div>
+				
+				<button type="submit" class="btn btn-primary m-0 mt-2"> Ajouter
+				</button>
+			</div>
+			{{ form_end(form) }}
+		</div>
+	</div>
+
+
+</div>
+

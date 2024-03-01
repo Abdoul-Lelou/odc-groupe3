@@ -103,7 +103,7 @@ class Place
 
     public function __toString()
     {
-        return $this->code;
+        return $this->code."".$this->isIsDisponible."".$this->park."".$this->stationnement."".$this->getParking();
     }
 
 }

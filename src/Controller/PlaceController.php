@@ -24,7 +24,7 @@ class PlaceController extends AbstractController
     /**
      * @Route("/place", name="app_place")
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
 
         return $this->render('place/index.html.twig', [
@@ -38,12 +38,11 @@ class PlaceController extends AbstractController
     {
         $place = $this->placeRepository->findOneById(intval($id));
         $stationnement = $this->placeRepository->findOneById(intval($id));
-
         $form = $this->createForm(AddStationnementType::class, $place)->handleRequest($request);
 
         if ($form->isSubmitted()) {
             $place->setIsDisponible(false);
-            $stationnement->setDateOutAt(new \DateTimeImmutable());
+            // $stationnement->setDateOutAt(new \DateTimeImmutable());
             $this->placeRepository->add($place, true);
 
             return $this->redirectToRoute('app_place');

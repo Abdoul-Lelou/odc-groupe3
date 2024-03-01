@@ -38,8 +38,8 @@
 							<th>Heure Ouvr</th>
 							<th>Heure Ferm</th>
 							<th>Categorie Park</th>
+								{% if app.user.profile =="ROLE_SUP_ADM" %}
 							<th>Manager</th>
-							{% if app.user.profile =="ROLE_SUP_ADM" %}
 								<th>Action</th>
 							{% endif %}
 						</tr>
@@ -67,7 +67,9 @@
 								{% else %}
 									<td class="d-flex justify-content-center">
 										{% if item.user != null %}
-											<i>{{ item.user.firstName }}</i>
+											{% if app.user.profile =="ROLE_SUP_ADM" %}
+												<i>{{ item.user.firstName }}</i>
+											{% endif %}
 
 											{# {% else %}
 																						<i href="{{ path('app_add_gestionaire', {'id': item.id}) }}" class="fas fa-user-circle mt-1 text-success"></i> #}
@@ -76,7 +78,7 @@
 								{% endif %}
 
 
-								{# {% if app.user.profile =="ROLE_SUP_ADM" %} #}
+								{% if app.user.profile =="ROLE_SUP_ADM" %}
 									<td>
 										{# ajout-place #}
 										<span class='d-flex justify-content-center p-1'>
@@ -93,13 +95,33 @@
 										</span>
 										{# </a> #}
 									</td>
-								{# {% endif %} #}
+								{% endif %}
 
 							</tr>
 
 						{% endfor %}
 
 					</tbody>
+					<caption>
+						{% if totalPages > 1 %}
+					<ul class="pagination">
+						<li {% if currentPage == 1 %}class="disabled"{% endif %}>
+							<a href="?page={{ currentPage - 1 }}">Previous</a>
+						</li>
+				
+						{% for page in 1..totalPages %}
+							<li {% if page == currentPage %}class="active"{% endif %}>
+								<a href="?page={{ page }}">{{ page }}</a>
+							</li>
+						{% endfor %}
+				
+						<li {% if currentPage == totalPages %}class="disabled"{% endif %}>
+							<a href="?page={{ currentPage + 1 }}" class="fas fa-previous">Next</a>
+						</li>
+					</ul>
+				{% endif %}
+					
+					</caption>
 				</table>
 			</div>
 			<!-- /.card-body -->

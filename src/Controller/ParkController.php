@@ -32,11 +32,33 @@ class ParkController extends AbstractController
     /**
      * @Route("/", name="app_park_index", methods={"GET"})
      */
-    public function index(ParkRepository $parkRepository): Response
+    public function index(ParkRepository $parkRepository, Request $request): Response
     {
+
+        $users = $parkRepository->findAll();
+        $page = $request->query->getInt('page', 1);
+        $limit = 4; // Users per page
+
+        
+        if (count($users) > $limit) {
+            $offset = ($page - 1) * $limit;
+            $paginatedUsers = array_slice($users, $offset, $limit);
+            $totalPages = ceil(count($users) / $limit);
+        } else {
+            $paginatedUsers = $users;
+            $totalPages = 1;
+        }
+
         return $this->render('park/index.html.twig', [
-            'parks' => $parkRepository->findAll(),
+            'parks' => $paginatedUsers,
+            'totalPages' => $totalPages,
+            'currentPage' => $page,
+            // 'form' => $form->createView(),
         ]);
+
+        // return $this->render('park/index.html.twig', [
+        //     'parks' => $parkRepository->findAll(),
+        // ]);
     }
 
     /**

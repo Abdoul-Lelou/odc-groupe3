@@ -23,7 +23,14 @@ class UserController extends AbstractController
      */
     public function index(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
+    
+
         $user = new User();
+
+        $users = $userRepository->findAll();
+        $page = $request->query->getInt('page', 1);
+        $limit = 6; // Users per page
+
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
@@ -44,30 +51,21 @@ class UserController extends AbstractController
 
             return $this->redirectToRoute('app_user_index');
         }
+        if (count($users) > $limit) {
+            $offset = ($page - 1) * $limit;
+            $paginatedUsers = array_slice($users, $offset, $limit);
+            $totalPages = ceil(count($users) / $limit);
+        } else {
+            $paginatedUsers = $users;
+            $totalPages = 1;
+        }
+
         return $this->render('user/index.html.twig', [
-            'users' => $userRepository->findAll(),
-            'form' => $form->createView()
+            'users' => $paginatedUsers,
+            'totalPages' => $totalPages,
+            'currentPage' => $page,
+            'form' => $form->createView(),
         ]);
-
-    //     $users = $userRepository->findAll();
-    // $page = $request->query->getInt('page', 1);
-    // $limit = 10; // Users per page
-
-    // if (count($users) > $limit) {
-    //     $offset = ($page - 1) * $limit;
-    //     $paginatedUsers = array_slice($users, $offset, $limit);
-    //     $totalPages = ceil(count($users) / $limit);
-    // } else {
-    //     $paginatedUsers = $users;
-    //     $totalPages = 1;
-    // }
-
-    // return $this->render('user/index.html.twig', [
-    //     'users' => $paginatedUsers,
-    //     'totalPages' => $totalPages,
-    //     'currentPage' => $page,
-    //     'form' => '$form->createView()',
-    // ]);
     }
 
     /**
@@ -75,9 +73,50 @@ class UserController extends AbstractController
      */
     public function clientuser(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
+        $user = new User();
+
+        $users = $userRepository->findAll();
+        $page = $request->query->getInt('page', 1);
+        $limit = 6; // Users per page
+
+        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // encode the plain password
+            $user->setPassword(
+                $userPasswordHasher->hashPassword(
+                    $user,
+                    $form->get('plainPassword')->getData()
+                )
+            );
+            $roles = $form->getData()->getProfile();
+            $user->setRoles([$roles]);
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+            // do anything else you need here, like send an email
+
+            return $this->redirectToRoute('app_user_client');
+        }
+        if (count($users) > $limit) {
+            $offset = ($page - 1) * $limit;
+            $paginatedUsers = array_slice($users, $offset, $limit);
+            $totalPages = ceil(count($users) / $limit);
+        } else {
+            $paginatedUsers = $users;
+            $totalPages = 1;
+        }
+
         return $this->render('user/client.html.twig', [
-            'users' => $userRepository->findAll(),
+            'users' => $paginatedUsers,
+            'totalPages' => $totalPages,
+            'currentPage' => $page,
+            'form' => $form->createView(),
         ]);
+        // return $this->render('user/client.html.twig', [
+        //     'users' => $userRepository->findAll(),
+        // ]);
     }
   
     /**
@@ -153,6 +192,8 @@ class UserController extends AbstractController
             'users' => $userRepository->findAll(),
             'form' => $form->createView()
         ]);
+
+        
     }
     
 
